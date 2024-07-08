@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.initiativeapp.Data.Character
+import com.example.initiativeapp.databinding.ItemCharacterBinding
 
 class CharacterAdapter(
 private var dataSet: List<Character> = emptyList(),
@@ -16,7 +17,7 @@ private val onItemCheckedClickListener: (Int) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val binding = ItemCharacterBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return CategoryViewHolder(binding)
+        return CharacterViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
@@ -41,17 +42,17 @@ private val onItemCheckedClickListener: (Int) -> Unit
     }
 
     override fun getItemCount(): Int = dataSet.size
-    fun updateData(dataSet: List<Category>) {
+    fun updateData(dataSet: List<Character>) {
         this.dataSet = dataSet
         notifyDataSetChanged()
     }
 
 
-    class CategoryViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CharacterViewHolder(val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root) {
 
         var isEditing = false
 
-        fun render(category: Category) {
+        fun render(category: Character) {
             binding.categoryTextView.text = category.name
             binding.categoryEditText.setText(category.name)
 

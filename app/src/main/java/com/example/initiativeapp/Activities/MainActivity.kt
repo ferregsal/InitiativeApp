@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.initiativeapp.Adapters.CharacterAdapter
+import com.example.initiativeapp.Data.Character
 import com.example.initiativeapp.R
 
 class MainActivity : AppCompatActivity() {
-    lateinit var horoscope : Horoscope
-    private var horoscopeList: List<Horoscope> = HoroscopeProvider.horoscopeList
+    lateinit var character : Character
+    private var characterList: List<Character> = CharacterProvider.characterList
     lateinit var recyclerView: RecyclerView
     /*lateinit var filterFuegoSwitch: Switch
     lateinit var filterAireSwitch: Switch
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        adapter.updateData(horoscopeList)
+        adapter.updateData(characterList)
     }
 
 }
