@@ -7,6 +7,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.BaseColumns
+import android.util.Log
 import android.view.Menu
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
 
             // showAlertDialog()
-            Toast.makeText(this, "Click on Character ${characterList[position].name}", Toast.LENGTH_SHORT).show()
+        // Toast.makeText(this, "Click on Character ${characterList[position].name}", Toast.LENGTH_SHORT).show()
 
 
         }, { position, newCharacterName ->
@@ -79,6 +80,38 @@ class MainActivity : AppCompatActivity() {
             character.hp = character.hp?.minus(1)
             characterDAO.update(character)
             loadData()
+        },{position->
+          val character = characterList[position]
+            character.blinded = !character.blinded
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
+        },{
+
         })
         binding.recyclerView.adapter = characterAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -87,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CreateEditActivity::class.java)
             startActivity(intent)
         }
-        conditions =
+
     }
 
     override fun onResume() {
