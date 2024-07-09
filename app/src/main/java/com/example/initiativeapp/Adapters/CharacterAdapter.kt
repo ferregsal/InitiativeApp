@@ -63,8 +63,8 @@ private val onItemSubstractHpClickListener: (Int) -> Unit
 
         fun render(character: Character) {
             binding.nameTextView.text = character.name
-            binding.initTextview.text = "Base Init : ${character.initiative.toString()}"
-            binding.hpTextview.text = "HP : ${character.hp.toString()}"
+            binding.initTextview.text = character.initiative.toString()
+            binding.hpTextview.text = character.hp.toString()
 
 
         }
