@@ -11,44 +11,82 @@
 
 
     <TextView
-        android:id="@+id/nameTextview"
+        android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Name"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="26sp" />
+        android:textSize="30sp"
+            android:layout_marginBottom="15dp"
+        android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="67dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="40dp"
 
         >
-
-        <TextView
-            android:id="@+id/baseInitTextview"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HP: 10"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/hpTextview"
+            android:layout_width="105dp"
+            android:layout_height="30dp"
+            android:text="HP : 10"
             android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
+            android:textSize="25dp"
+            android:textAlignment="center"
+            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
+                >
+            <Button
+                android:id="@+id/substractHpButton"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/substract_arrow_icon"
+
+                />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/addHpButton"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/add_arrow_icon" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
         <TextView
             android:id="@+id/initTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="Final Init: 20"
+            android:text="Base Init: 10"
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
+
         <TextView
             android:id="@+id/finalInitTextview"
             android:layout_width="wrap_content"
@@ -59,14 +97,22 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="32dp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <FrameLayout
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_gravity="center|top"
-        android:layout_marginVertical="30dp">
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:layout_marginVertical="30dp"
+        android:layout_weight="8"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/logoCardView"
@@ -76,280 +122,289 @@
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:orientation="vertical"
-                >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:orientation="horizontal"
+                android:orientation="vertical">
 
-                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp">
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/blindedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_blinded" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/charmedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_charmed" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/deafenedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_deafened" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/exhaustedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_exhausted" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/frightenedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_frightened" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/grappledImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_grappled" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/incapacitatedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_incapacitated" />
+                    </FrameLayout>
+                    
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="15dp"
+                    android:paddingBottom="15dp"
+
                     >
 
-                    <ImageView
-                        android:id="@+id/blindedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:src="@mipmap/ic_blinded"
-                        />
-                </FrameLayout>
+                   <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                        <ImageView
+                            android:id="@+id/invisibleImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
 
-                    <ImageView
-                        android:id="@+id/charmedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_charmed"
-                        />
-                </FrameLayout>
+                            android:src="@mipmap/ic_invisible" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/deafenedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_deafened"
-                        />
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/paralyzedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_paralyzed" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/exhaustedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_exhausted"
-                        />
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/petrifiedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_petrified" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/frightenedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_frightened"
-                        />
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/poisonedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_poisoned" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/grappledImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_grappled"
-                        />
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/proneImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_prone" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/incapacitatedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_incapacitated"
-                        />
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/restrainedImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_restrained" />
+                    </FrameLayout>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:orientation="horizontal"
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
 
-                >
+                        <ImageView
+                            android:id="@+id/unconsciousImageView"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_unconscious" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
 
-                    <ImageView
-                        android:id="@+id/invisibleImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:src="@mipmap/ic_invisible"
-                        />
-                </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
+                   <!-- <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:layout_height="match_parent"
+                        android:layout_width="match_parent"
 
-                    <ImageView
-                        android:id="@+id/paralyzedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_paralyzed"
-                        />
-                </FrameLayout>
+                        >
+                    <Button
+                    app:icon="@mipmap/ic_blinded"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    />
+                    <Button
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
-
-                    <ImageView
-                        android:id="@+id/petrifiedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_petrified"
-                        />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
-
-                    <ImageView
-                        android:id="@+id/poisonedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_poisoned"
-                        />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
-
-                    <ImageView
-                        android:id="@+id/proneImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_prone"
-                        />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
-
-                    <ImageView
-                        android:id="@+id/restrainedImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_restrained"
-                        />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    >
-
-                    <ImageView
-                        android:id="@+id/unconsciousImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:src="@mipmap/ic_unconscious"
-                        />
-                </FrameLayout>
-
-            </LinearLayout>
+                    app:icon="@mipmap/ic_charmed"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    />
+                    <Button
+                    app:icon="@mipmap/ic_deafened"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    />
+                </com.google.android.material.button.MaterialButtonToggleGroup> -->
+                </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageButton
+                android:id="@+id/editImageButton"
+                android:layout_width="match_parent"
+
+                android:layout_height="80dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:background="#00FFFFFF"
+                android:contentDescription="Delete Task"
+                android:src="@drawable/edit_icon"
+
+                />
+        <ImageButton
+            android:id="@+id/deleteImageButton"
+            android:layout_width="match_parent"
+
+            android:layout_height="80dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="Delete Task"
+            android:src="@drawable/delete_icon"
+
+            />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

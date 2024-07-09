@@ -3,7 +3,6 @@ package com.example.initiativeapp.Data
 import android.content.ContentValues
 import android.content.Context
 import android.provider.BaseColumns
-import com.example.initiativeapp.Data.Character
 import com.example.initiativeapp.Utils.DatabaseManager
 
 class CharacterDAO(context: Context) {
@@ -58,7 +57,7 @@ class CharacterDAO(context: Context) {
             db.delete(Character.TABLE_NAME, "${BaseColumns._ID} = ${character.id}", null)
     }
 
-    fun find(id: Int): Character? {
+    fun findById(id: Int): Character? {
         val db = DatabaseManager.readableDatabase
 
         val projection = arrayOf(

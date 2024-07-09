@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.initiativeapp.Data.Character
 import com.example.initiativeapp.databinding.ItemCharacterBinding
 
+
 class CharacterAdapter(
 private var dataSet: List<Character> = emptyList(),
 private val onItemClickListener: (Int) -> Unit,
 private val onItemSaveClickListener: (Int, String) -> Unit,
 private val onItemDeleteClickListener: (Int) -> Unit,
+private val onItemEditClickListener: (Int) -> Unit,
 private val onItemCheckedClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>(){
 
@@ -26,17 +28,17 @@ private val onItemCheckedClickListener: (Int) -> Unit
         holder.binding.deleteImageButton.setOnClickListener {
             onItemDeleteClickListener(position)
         }
-
-        holder.itemView.setOnLongClickListener{
-            if (!holder.isEditing) {
-                holder.toggleEditMode()
-            }
-            return@setOnLongClickListener true
+        holder.binding.editImageButton.setOnClickListener {
+            onItemEditClickListener(position)
         }
-        holder.binding.saveImageButton.setOnClickListener {
-            holder.toggleEditMode()
 
-        }
+
+
+        /*  holder.itemView.setOnLongClickListener{
+
+              }
+              return@setOnLongClickListener true
+          }*/
 
 
     }
@@ -52,21 +54,13 @@ private val onItemCheckedClickListener: (Int) -> Unit
 
         var isEditing = false
 
-        fun render(category: Character) {
-            binding.categoryTextView.text = category.name
-            binding.categoryEditText.setText(category.name)
+        fun render(character: Character) {
+            binding.nameTextView.text = character.name
+            binding.initTextview.text = "Base Init : ${character.initiative.toString()}"
+            binding.hpTextview.text = "HP : ${character.hp.toString()}"
+
 
         }
 
-        fun toggleEditMode() {
-            if (isEditing) {
-                binding.deleteLayout.visibility=View.VISIBLE
-                binding.saveLayout.visibility=View.GONE
-            } else {
-                binding.deleteLayout.visibility=View.GONE
-                binding.saveLayout.visibility=View.VISIBLE
-            }
-            isEditing = !isEditing
-        }
     }
 }
