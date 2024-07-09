@@ -14,7 +14,8 @@ private val onItemClickListener: (Int) -> Unit,
 private val onItemSaveClickListener: (Int, String) -> Unit,
 private val onItemDeleteClickListener: (Int) -> Unit,
 private val onItemEditClickListener: (Int) -> Unit,
-private val onItemCheckedClickListener: (Int) -> Unit
+private val onItemAddHpClickListener: (Int) -> Unit,
+private val onItemSubstractHpClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -30,6 +31,12 @@ private val onItemCheckedClickListener: (Int) -> Unit
         }
         holder.binding.editImageButton.setOnClickListener {
             onItemEditClickListener(position)
+        }
+        holder.binding.addHpButton.setOnClickListener {
+            onItemAddHpClickListener(position)
+        }
+        holder.binding.substractHpButton.setOnClickListener {
+            onItemSubstractHpClickListener(position)
         }
 
 

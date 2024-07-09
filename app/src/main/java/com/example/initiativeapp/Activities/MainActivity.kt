@@ -69,9 +69,14 @@ class MainActivity : AppCompatActivity() {
             /*characterDAO.update(characterList[position])
             Toast.makeText(this, "Character Edit Successfully Clicked", Toast.LENGTH_SHORT).show()
             loadData()*/
-        }, {
-            val character = characterList[it]
-            character.initiative = character.initiative
+        }, {position->
+          val character = characterList[position]
+            character.hp = character.hp?.plus(1)
+            characterDAO.update(character)
+            loadData()
+        }, {position->
+            val character = characterList[position]
+            character.hp = character.hp?.minus(1)
             characterDAO.update(character)
             loadData()
         })

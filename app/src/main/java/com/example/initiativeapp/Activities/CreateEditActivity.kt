@@ -37,11 +37,15 @@ class CreateEditActivity: AppCompatActivity() {
             binding.characterEditText.setText(editingCharacter.name)
             binding.initiativeEditText.setText(editingCharacter.initiative.toString())
             binding.hpEditText.setText(editingCharacter.hp.toString())
-
+            binding.newCharacterButton.setOnClickListener {
             editingCharacter.name = binding.characterEditText.text.toString()
             editingCharacter.initiative = binding.initiativeEditText.text.toString().toInt()
             editingCharacter.hp = binding.hpEditText.text.toString().toInt()
             characterDAO.update(editingCharacter)
+            Toast.makeText(this, "Character Edited correctly", Toast.LENGTH_SHORT).show()
+            finish()
+            }
+
         } else {
             // Crear
             binding.newCharacterButton.setOnClickListener {
@@ -53,7 +57,9 @@ class CreateEditActivity: AppCompatActivity() {
                 Toast.makeText(this, "Character saved correctly", Toast.LENGTH_SHORT).show()
                 finish()
             }
+
         }
+
 
 
 
