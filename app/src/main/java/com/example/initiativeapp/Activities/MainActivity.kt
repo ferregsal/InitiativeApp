@@ -80,39 +80,22 @@ class MainActivity : AppCompatActivity() {
             character.hp = character.hp?.minus(1)
             characterDAO.update(character)
             loadData()
-        },{position->
-          val character = characterList[position]
-            character.blinded = !character.blinded
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
         },{
-
-        })
+        },{
+        },characterDAO = characterDAO)
         binding.recyclerView.adapter = characterAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 

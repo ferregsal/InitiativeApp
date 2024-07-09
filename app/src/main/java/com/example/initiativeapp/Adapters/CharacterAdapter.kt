@@ -1,7 +1,9 @@
 package com.example.initiativeapp.Adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.initiativeapp.Data.Character
 import com.example.initiativeapp.Data.CharacterDAO
@@ -31,7 +33,8 @@ private val onItemPoisonedClickListener: (Int) -> Unit,
 private val onItemProneClickListener: (Int) -> Unit,
 private val onItemRestrainedClickListener: (Int) -> Unit,
 private val onItemStunnedClickListener: (Int) -> Unit,
-private val onItemUnconsciousClickListener: (Int) -> Unit
+private val onItemUnconsciousClickListener: (Int) -> Unit,
+private val characterDAO: CharacterDAO
 
 
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>(){
@@ -42,186 +45,173 @@ private val onItemUnconsciousClickListener: (Int) -> Unit
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val characterList: List<Character>
-        lateinit var characterDAO: CharacterDAO
-        characterList = characterDAO.findAll()
+        val characterList: List<Character> = characterDAO.findAll()
+        val character = characterList[position]
+
         holder.render(dataSet[position])
-        holder.itemView.setOnClickListener{onItemClickListener(position)}
-        holder.binding.deleteImageButton.setOnClickListener {
-            onItemDeleteClickListener(position)
-        }
-        holder.binding.editImageButton.setOnClickListener {
-            onItemEditClickListener(position)
+        holder.itemView.setOnClickListener { onItemClickListener(position) }
+        holder.binding.deleteImageButton.setOnClickListener { onItemDeleteClickListener(position) }
+        holder.binding.editImageButton.setOnClickListener { onItemEditClickListener(position) }
+        holder.binding.addHpButton.setOnClickListener { onItemAddHpClickListener(position) }
+        holder.binding.substractHpButton.setOnClickListener { onItemSubstractHpClickListener(position) }
 
-        }
-        holder.binding.addHpButton.setOnClickListener {
-            onItemAddHpClickListener(position)
-
-        }
-        holder.binding.substractHpButton.setOnClickListener {
-            onItemSubstractHpClickListener(position)
-
-        }
         holder.binding.blindedImageView.setOnClickListener {
+            character.blinded = !character.blinded
             onItemBlindedClickListener(position)
-            val character = characterList[position]
-            if (character.blinded){
+            if (character.blinded) {
                 holder.binding.blindedImageView.setImageResource(R.mipmap.ic_blinded)
-            }
-            else {
+            } else {
                 holder.binding.blindedImageView.setImageResource(R.mipmap.ic_blinded_false)
             }
         }
+
         holder.binding.charmedImageView.setOnClickListener {
+            character.charmed = !character.charmed
             onItemCharmedClickListener(position)
-            val character = characterList[position]
-            if (character.charmed){
+            if (character.charmed) {
                 holder.binding.charmedImageView.setImageResource(R.mipmap.ic_charmed)
-            }
-            else {
+            } else {
                 holder.binding.charmedImageView.setImageResource(R.mipmap.ic_charmed_false)
             }
         }
+
         holder.binding.deafenedImageView.setOnClickListener {
+            character.deafened = !character.deafened
             onItemDeafenedClickListener(position)
-            val character = characterList[position]
-            if (character.deafened){
+            if (character.deafened) {
                 holder.binding.deafenedImageView.setImageResource(R.mipmap.ic_deafened)
-            }
-            else {
+            } else {
                 holder.binding.deafenedImageView.setImageResource(R.mipmap.ic_deafened_false)
             }
         }
+
         holder.binding.exhaustedImageView.setOnClickListener {
+            character.exhausted = !character.exhausted
             onItemExhaustedClickListener(position)
-            val character = characterList[position]
-            if (character.exhausted){
+            if (character.exhausted) {
                 holder.binding.exhaustedImageView.setImageResource(R.mipmap.ic_exhausted)
-            }
-            else {
+            } else {
                 holder.binding.exhaustedImageView.setImageResource(R.mipmap.ic_exhausted_false)
             }
         }
+
         holder.binding.frightenedImageView.setOnClickListener {
+            character.frightened = !character.frightened
             onItemFrightenedClickListener(position)
-            val character = characterList[position]
-            if (character.frightened){
+            if (character.frightened) {
                 holder.binding.frightenedImageView.setImageResource(R.mipmap.ic_frightened)
-            }
-            else {
+            } else {
                 holder.binding.frightenedImageView.setImageResource(R.mipmap.ic_frightened_false)
             }
         }
+
         holder.binding.grappledImageView.setOnClickListener {
+            character.grappled = !character.grappled
             onItemGrappledClickListener(position)
-            val character = characterList[position]
-            if (character.grappled){
+            if (character.grappled) {
                 holder.binding.grappledImageView.setImageResource(R.mipmap.ic_grappled)
-            }
-            else {
+            } else {
                 holder.binding.grappledImageView.setImageResource(R.mipmap.ic_grappled_false)
             }
         }
+
         holder.binding.incapacitatedImageView.setOnClickListener {
+            character.incapacitated = !character.incapacitated
             onItemIncapacitatedClickListener(position)
-            val character = characterList[position]
-            if (character.incapacitated){
+            if (character.incapacitated) {
                 holder.binding.incapacitatedImageView.setImageResource(R.mipmap.ic_incapacitated)
-            }
-            else {
+            } else {
                 holder.binding.incapacitatedImageView.setImageResource(R.mipmap.ic_incapacitated_false)
             }
         }
+
         holder.binding.invisibleImageView.setOnClickListener {
+            character.invisible = !character.invisible
             onItemInvisibleClickListener(position)
-            val character = characterList[position]
-            if (character.invisible){
+            if (character.invisible) {
                 holder.binding.invisibleImageView.setImageResource(R.mipmap.ic_invisible)
-            }
-            else {
+            } else {
                 holder.binding.invisibleImageView.setImageResource(R.mipmap.ic_invisible_false)
             }
         }
+
         holder.binding.paralyzedImageView.setOnClickListener {
+            character.paralyzed = !character.paralyzed
             onItemParalyzedClickListener(position)
-            val character = characterList[position]
-            if (character.paralyzed){
+            if (character.paralyzed) {
                 holder.binding.paralyzedImageView.setImageResource(R.mipmap.ic_paralyzed)
-            }
-            else {
+            } else {
                 holder.binding.paralyzedImageView.setImageResource(R.mipmap.ic_paralyzed_false)
             }
         }
+
         holder.binding.petrifiedImageView.setOnClickListener {
+            character.petrified = !character.petrified
             onItemPetrifiedClickListener(position)
-            val character = characterList[position]
-            if (character.petrified){
+            if (character.petrified) {
                 holder.binding.petrifiedImageView.setImageResource(R.mipmap.ic_petrified)
-            }
-            else {
+            } else {
                 holder.binding.petrifiedImageView.setImageResource(R.mipmap.ic_petrified_false)
             }
         }
+
         holder.binding.poisonedImageView.setOnClickListener {
+            character.poisoned = !character.poisoned
             onItemPoisonedClickListener(position)
-            val character = characterList[position]
-            if (character.poisoned){
+            if (character.poisoned) {
                 holder.binding.poisonedImageView.setImageResource(R.mipmap.ic_poisoned)
-            }
-            else {
+            } else {
                 holder.binding.poisonedImageView.setImageResource(R.mipmap.ic_poisoned_false)
             }
         }
+
         holder.binding.proneImageView.setOnClickListener {
+            character.prone = !character.prone
             onItemProneClickListener(position)
-            val character = characterList[position]
-            if (character.prone){
+            if (character.prone) {
                 holder.binding.proneImageView.setImageResource(R.mipmap.ic_prone)
-            }
-            else {
+            } else {
                 holder.binding.proneImageView.setImageResource(R.mipmap.ic_prone_false)
             }
         }
+
         holder.binding.restrainedImageView.setOnClickListener {
+            character.restrained = !character.restrained
             onItemRestrainedClickListener(position)
-            val character = characterList[position]
-            if (character.restrained){
+            if (character.restrained) {
                 holder.binding.restrainedImageView.setImageResource(R.mipmap.ic_restrained)
-            }
-            else {
+            } else {
                 holder.binding.restrainedImageView.setImageResource(R.mipmap.ic_restrained_false)
             }
         }
+
         holder.binding.stunnedImageView.setOnClickListener {
+            character.stunned = !character.stunned
             onItemStunnedClickListener(position)
-            val character = characterList[position]
-            if (character.stunned){
+            if (character.stunned) {
                 holder.binding.stunnedImageView.setImageResource(R.mipmap.ic_stunned)
-            }
-            else {
+            } else {
                 holder.binding.stunnedImageView.setImageResource(R.mipmap.ic_stunned_false)
             }
         }
+
         holder.binding.unconsciousImageView.setOnClickListener {
+            character.unconscious = !character.unconscious
             onItemUnconsciousClickListener(position)
-            val character = characterList[position]
-            if (character.unconscious){
+
+            if (character.unconscious) {
                 holder.binding.unconsciousImageView.setImageResource(R.mipmap.ic_unconscious)
-            }
-            else {
+                Log.d("Boolean Unconscious", "${character.unconscious}")
+            } else {
                 holder.binding.unconsciousImageView.setImageResource(R.mipmap.ic_unconscious_false)
+                Log.d("Boolean Unconscious", "${character.unconscious}")
             }
         }
-
-
-
-
         /*  holder.itemView.setOnLongClickListener{
 
               }
               return@setOnLongClickListener true
           }*/
-
 
     }
 
