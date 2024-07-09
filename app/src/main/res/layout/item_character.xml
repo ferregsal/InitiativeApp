@@ -187,203 +187,270 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="270dp"
         android:orientation="horizontal">
     <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_marginVertical="30dp"
-        android:layout_weight="18"
+        android:layout_marginTop="20dp"
         >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/logoCardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:cardBackgroundColor="@color/grey"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="5dp"
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="15dp"
-                    android:paddingTop="15dp">
+                    android:paddingHorizontal="10dp">
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/blindedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_blinded" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/charmedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_charmed" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/deafenedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_deafened" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/exhaustedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_exhausted" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/frightenedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_frightened" />
                     </FrameLayout>
-                    <Space
-                        android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/grappledImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_grappled" />
-                    </FrameLayout>
-                    <Space
-                        android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/incapacitatedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_incapacitated" />
-                    </FrameLayout>
-                    
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingHorizontal="10dp"
+
+                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/grappledImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_grappled" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/incapacitatedImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_incapacitated" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+
+                            android:id="@+id/restrainedImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_restrained" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/unconsciousImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_unconscious" />
+                    </FrameLayout>
+                    <Space
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent" />
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/stunnedImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_stunned" />
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp"
 
                     >
 
-                   <FrameLayout
+                    <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/invisibleImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
 
                             android:src="@mipmap/ic_invisible" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/paralyzedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_paralyzed" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -392,83 +459,48 @@
 
                         <ImageView
                             android:id="@+id/petrifiedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_petrified" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/poisonedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_poisoned" />
                     </FrameLayout>
+
                     <Space
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/proneImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_prone" />
                     </FrameLayout>
-                    <Space
-                        android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/restrainedImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_restrained" />
-                    </FrameLayout>
-                    <Space
-                        android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        />
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/unconsciousImageView"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_unconscious" />
-                    </FrameLayout>
-
-
-
-                   <!-- <com.google.android.material.button.MaterialButtonToggleGroup
+                    <!-- <com.google.android.material.button.MaterialButtonToggleGroup
                     android:layout_height="match_parent"
                         android:layout_width="match_parent"
 

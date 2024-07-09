@@ -87,8 +87,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CreateEditActivity::class.java)
             startActivity(intent)
         }
-
-
+        conditions =
     }
 
     override fun onResume() {
@@ -103,17 +102,7 @@ class MainActivity : AppCompatActivity() {
 
         characterAdapter.updateData(characterList)
     }
-    private fun applyFilters() {
 
-        if (searchText != null) {
-            characterList = characterDAO.findAll().filter {
-                it.name.contains(searchText!!, true)
-            }
-        }
-
-        characterAdapter.updateData(characterList)
-
-    }
     fun navigateToDetail(character: Character) {
         val intent = Intent(this, CreateEditActivity::class.java)
         intent.putExtra(BaseColumns._ID, character.id)
