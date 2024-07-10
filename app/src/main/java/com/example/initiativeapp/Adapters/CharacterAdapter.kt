@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,6 @@ import com.example.initiativeapp.databinding.ItemCharacterBinding
 
 class CharacterAdapter(
 private var dataSet: List<Character> = emptyList(),
-private val onItemClickListener: (Int) -> Unit,
 private val onItemDeleteClickListener: (Int) -> Unit,
 private val onItemEditClickListener: (Int) -> Unit,
 private val onItemAddHpClickListener: (Int) -> Unit,
@@ -54,7 +55,6 @@ private val characterDAO: CharacterDAO,
         val character = characterList[position]
 
         holder.render(dataSet[position])
-        holder.itemView.setOnClickListener { onItemClickListener(position) }
         holder.binding.deleteImageButton.setOnClickListener { onItemDeleteClickListener(position) }
         holder.binding.editImageButton.setOnClickListener { onItemEditClickListener(position) }
         holder.binding.addHpButton.setOnClickListener { onItemAddHpClickListener(position) }
@@ -237,12 +237,27 @@ private val characterDAO: CharacterDAO,
             }
             characterDAO.update(character)
         }
-        /*  holder.itemView.setOnLongClickListener{
+        val conditionImageViewMap = mapOf(
+            Conditions.blinded to holder.binding.blindedImageView,
+            Conditions.charmed to holder.binding.charmedImageView,
+            Conditions.deafened to holder.binding.deafenedImageView,
+            Conditions.exhausted to holder.binding.exhaustedImageView,
+            Conditions.frightened to holder.binding.frightenedImageView,
+            Conditions.grappled to holder.binding.grappledImageView,
+            Conditions.incapacitated to holder.binding.incapacitatedImageView,
+            Conditions.invisible to holder.binding.invisibleImageView,
+            Conditions.paralyzed to holder.binding.paralyzedImageView,
+            Conditions.petrified to holder.binding.petrifiedImageView,
+            Conditions.poisoned to holder.binding.poisonedImageView,
+            Conditions.prone to holder.binding.proneImageView,
+            Conditions.restrained to holder.binding.restrainedImageView,
+            Conditions.stunned to holder.binding.stunnedImageView,
+            Conditions.unconscious to holder.binding.unconsciousImageView
+        )
 
-              }
-              return@setOnLongClickListener true
-          }*/
-
+        for ((condition, imageView) in conditionImageViewMap) {
+            setConditionLongClickListener(imageView, condition, position)
+        }
     }
 
     override fun getItemCount(): Int = dataSet.size
@@ -320,18 +335,61 @@ private val characterDAO: CharacterDAO,
             }
         }
     }
+    private fun setConditionLongClickListener(
+        imageView: ImageView,
+        condition: Conditions,
+        position: Int
+    ) {
+        imageView.setOnLongClickListener {
+            val context = imageView.context
+            val details = conditionDetails[condition]
+            details?.let {
+                val titleResId = it.first
+                val descriptionResId = it.second
+                val imageResId = it.third
+                val inflater = LayoutInflater.from(context)
+                val dialogView = inflater.inflate(R.layout.custom_view_layout, null)
+
+                val titleTextView = dialogView.findViewById<TextView>(R.id.conditionTitleTextView)
+                val descriptionTextView = dialogView.findViewById<TextView>(R.id.conditionDescriptionTextView)
+                val conditionImageView = dialogView.findViewById<ImageView>(R.id.conditionImageView)
+
+                titleTextView.text = context.getString(titleResId)
+                descriptionTextView.text = context.getString(descriptionResId)
+                conditionImageView.setImageResource(imageResId)
+
+                AlertDialog.Builder(context)
+                    .setView(dialogView)
+                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                    .show()
+            }
+            true
+        }
+    }
 
     class CharacterViewHolder(val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        var isEditing = false
 
         fun render(character: Character) {
             binding.nameTextView.text = character.name
             binding.initTextview.text = character.initiative.toString()
             binding.hpTextview.text = character.hp.toString()
-
-
         }
-
     }
-}
+
+}private val conditionDetails = mapOf(
+    Conditions.blinded to Triple(R.string.blinded_title_esp, R.string.blinded_description_esp, R.mipmap.ic_blinded),
+    Conditions.charmed to Triple(R.string.charmed_title_esp, R.string.charmed_description_esp, R.mipmap.ic_charmed),
+    Conditions.deafened to Triple(R.string.deafened_title_esp, R.string.deafened_description_esp, R.mipmap.ic_deafened),
+    Conditions.exhausted to Triple(R.string.exhausted_title_esp, R.string.exhausted_description_esp, R.mipmap.ic_exhausted),
+    Conditions.frightened to Triple(R.string.frightened_title_esp, R.string.frightened_description_esp, R.mipmap.ic_frightened),
+    Conditions.grappled to Triple(R.string.grappled_title_esp, R.string.grappled_description_esp, R.mipmap.ic_grappled),
+    Conditions.incapacitated to Triple(R.string.incapacitated_title_esp, R.string.incapacitated_description_esp, R.mipmap.ic_incapacitated),
+    Conditions.invisible to Triple(R.string.invisible_title_esp, R.string.invisible_description_esp, R.mipmap.ic_invisible),
+    Conditions.paralyzed to Triple(R.string.paralyzed_title_esp, R.string.paralyzed_description_esp, R.mipmap.ic_paralyzed),
+    Conditions.petrified to Triple(R.string.petrified_title_esp, R.string.petrified_description_esp, R.mipmap.ic_petrified),
+    Conditions.poisoned to Triple(R.string.poisoned_title_esp, R.string.poisoned_description_esp, R.mipmap.ic_poisoned),
+    Conditions.prone to Triple(R.string.prone_title_esp, R.string.prone_description_esp, R.mipmap.ic_prone),
+    Conditions.restrained to Triple(R.string.restrained_title_esp, R.string.restrained_description_esp, R.mipmap.ic_restrained),
+    Conditions.stunned to Triple(R.string.stunned_title_esp, R.string.stunned_description_esp, R.mipmap.ic_stunned),
+    Conditions.unconscious to Triple(R.string.unconscious_title_esp, R.string.unconscious_description_esp, R.mipmap.ic_unconscious)
+)

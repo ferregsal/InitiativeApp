@@ -7,6 +7,32 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="25dp"
+        >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="25dp"
+        app:cardBackgroundColor="@color/dark_grey"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newCharacterText"
+            android:textSize="40dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginVertical="15dp"
+            />
+    </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="25dp"
         >
     <androidx.cardview.widget.CardView
@@ -23,48 +49,56 @@
         android:padding="15dp"
         android:layout_margin="25dp"
         >
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nameField"
+            >
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/nameField"
-    android:textStyle="bold"
-    android:textSize="24dp"
-    />
-    <EditText
-        android:id="@+id/characterEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/initiativeField"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        />
-    <EditText
-        android:id="@+id/initiativeEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:inputType="number"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hpField"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        />
-    <EditText
-        android:id="@+id/hpEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:inputType="number"
-        />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/characterEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/initiativeField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/initiativeField"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/initiativeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                android:maxLength="2"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hpField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hpField"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hpEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:maxLength="3"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

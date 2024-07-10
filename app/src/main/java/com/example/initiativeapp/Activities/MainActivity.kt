@@ -56,23 +56,14 @@ class MainActivity : AppCompatActivity() {
         characterList = characterDAO.findAll()
 
 
-        characterAdapter = CharacterAdapter(emptyList(), {position ->
-
-
-            // showAlertDialog()
-        // Toast.makeText(this, "Click on Character ${characterList[position].name}", Toast.LENGTH_SHORT).show()
-
-
-        },{
+        characterAdapter = CharacterAdapter(emptyList(), {
             characterDAO.delete(characterList[it])
             Toast.makeText(this, "Character Deleted Successfully", Toast.LENGTH_SHORT).show()
             loadData()
-        }, {position ->
+        },{position ->
             navigateToDetail(characterList[position])
-            /*characterDAO.update(characterList[position])
-            Toast.makeText(this, "Character Edit Successfully Clicked", Toast.LENGTH_SHORT).show()
-            loadData()*/
-        }, {position->
+            characterDAO.update(characterList[position])
+        },{position->
           val character = characterList[position]
             character.hp = character.hp?.plus(1)
             characterDAO.update(character)

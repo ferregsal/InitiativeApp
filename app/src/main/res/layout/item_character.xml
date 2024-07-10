@@ -64,7 +64,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="40dp"
 
@@ -102,6 +102,9 @@
             android:textStyle="bold"
             />
         </LinearLayout>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="5dp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,9 +114,8 @@
             <Button
                 android:id="@+id/substractHpButton"
                 android:layout_width="35dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:background="@drawable/substract_arrow_icon"
-
                 />
 
                 <Space
@@ -124,7 +126,7 @@
                 <Button
                     android:id="@+id/addHpButton"
                     android:layout_width="35dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:background="@drawable/add_arrow_icon" />
             </LinearLayout>
         </LinearLayout>
