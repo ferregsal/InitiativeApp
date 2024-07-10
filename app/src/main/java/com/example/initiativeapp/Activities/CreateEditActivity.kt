@@ -38,9 +38,13 @@ class CreateEditActivity: AppCompatActivity() {
             binding.initiativeEditText.setText(editingCharacter.initiative.toString())
             binding.hpEditText.setText(editingCharacter.hp.toString())
             binding.newCharacterButton.setOnClickListener {
-            editingCharacter.name = binding.characterEditText.text.toString()
-            editingCharacter.initiative = binding.initiativeEditText.text.toString().toInt()
-            editingCharacter.hp = binding.hpEditText.text.toString().toInt()
+                if (editingCharacter.name!=""){
+            editingCharacter.name = binding.characterEditText.text.toString()}
+                if (editingCharacter.initiative!=0){
+                    editingCharacter.initiative = binding.initiativeEditText.text.toString().toInt()}
+                else{finish()}
+                editingCharacter.hp = binding.hpEditText.text.toString().toInt()
+
             characterDAO.update(editingCharacter)
             Toast.makeText(this, "Character Edited correctly", Toast.LENGTH_SHORT).show()
             finish()
@@ -53,9 +57,13 @@ class CreateEditActivity: AppCompatActivity() {
                 val characterInitiative = binding.initiativeEditText.text.toString()
                 val characterHp = binding.hpEditText.text.toString()
                 val character = Character(-1, characterName, characterInitiative.toInt(),characterHp.toInt())
-                characterDAO.insert(character)
-                Toast.makeText(this, "Character saved correctly", Toast.LENGTH_SHORT).show()
-                finish()
+                if(characterName !="" && characterInitiative.toInt()!=0){
+                    characterDAO.insert(character)
+                    Toast.makeText(this, "Character saved correctly", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                else{finish()}
+
             }
 
         }

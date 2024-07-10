@@ -1,12 +1,16 @@
 package com.example.initiativeapp.Adapters
 
+import android.content.DialogInterface
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.initiativeapp.Data.Character
 import com.example.initiativeapp.Data.CharacterDAO
+import com.example.initiativeapp.Data.Conditions
 import com.example.initiativeapp.R
 import com.example.initiativeapp.databinding.ItemCharacterBinding
 
@@ -14,7 +18,6 @@ import com.example.initiativeapp.databinding.ItemCharacterBinding
 class CharacterAdapter(
 private var dataSet: List<Character> = emptyList(),
 private val onItemClickListener: (Int) -> Unit,
-private val onItemSaveClickListener: (Int, String) -> Unit,
 private val onItemDeleteClickListener: (Int) -> Unit,
 private val onItemEditClickListener: (Int) -> Unit,
 private val onItemAddHpClickListener: (Int) -> Unit,
@@ -34,7 +37,9 @@ private val onItemProneClickListener: (Int) -> Unit,
 private val onItemRestrainedClickListener: (Int) -> Unit,
 private val onItemStunnedClickListener: (Int) -> Unit,
 private val onItemUnconsciousClickListener: (Int) -> Unit,
-private val characterDAO: CharacterDAO
+private val characterDAO: CharacterDAO,
+
+
 
 
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>(){
@@ -54,7 +59,7 @@ private val characterDAO: CharacterDAO
         holder.binding.editImageButton.setOnClickListener { onItemEditClickListener(position) }
         holder.binding.addHpButton.setOnClickListener { onItemAddHpClickListener(position) }
         holder.binding.substractHpButton.setOnClickListener { onItemSubstractHpClickListener(position) }
-
+        setCharacterImages(holder, character)
         holder.binding.blindedImageView.setOnClickListener {
             character.blinded = !character.blinded
             onItemBlindedClickListener(position)
@@ -63,7 +68,10 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.blindedImageView.setImageResource(R.mipmap.ic_blinded_false)
             }
+            characterDAO.update(character)
         }
+
+
 
         holder.binding.charmedImageView.setOnClickListener {
             character.charmed = !character.charmed
@@ -73,7 +81,15 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.charmedImageView.setImageResource(R.mipmap.ic_charmed_false)
             }
+            characterDAO.update(character)
         }
+        /*holder.binding.charmedImageView.setOnLongClickListener {
+            showAlertDialogWithDescription(Conditions.blinded){
+
+            }
+        }*/
+
+
 
         holder.binding.deafenedImageView.setOnClickListener {
             character.deafened = !character.deafened
@@ -83,6 +99,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.deafenedImageView.setImageResource(R.mipmap.ic_deafened_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.exhaustedImageView.setOnClickListener {
@@ -93,6 +110,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.exhaustedImageView.setImageResource(R.mipmap.ic_exhausted_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.frightenedImageView.setOnClickListener {
@@ -103,6 +121,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.frightenedImageView.setImageResource(R.mipmap.ic_frightened_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.grappledImageView.setOnClickListener {
@@ -113,6 +132,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.grappledImageView.setImageResource(R.mipmap.ic_grappled_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.incapacitatedImageView.setOnClickListener {
@@ -123,6 +143,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.incapacitatedImageView.setImageResource(R.mipmap.ic_incapacitated_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.invisibleImageView.setOnClickListener {
@@ -133,6 +154,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.invisibleImageView.setImageResource(R.mipmap.ic_invisible_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.paralyzedImageView.setOnClickListener {
@@ -143,6 +165,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.paralyzedImageView.setImageResource(R.mipmap.ic_paralyzed_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.petrifiedImageView.setOnClickListener {
@@ -153,6 +176,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.petrifiedImageView.setImageResource(R.mipmap.ic_petrified_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.poisonedImageView.setOnClickListener {
@@ -162,7 +186,9 @@ private val characterDAO: CharacterDAO
                 holder.binding.poisonedImageView.setImageResource(R.mipmap.ic_poisoned)
             } else {
                 holder.binding.poisonedImageView.setImageResource(R.mipmap.ic_poisoned_false)
+
             }
+            characterDAO.update(character)
         }
 
         holder.binding.proneImageView.setOnClickListener {
@@ -173,6 +199,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.proneImageView.setImageResource(R.mipmap.ic_prone_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.restrainedImageView.setOnClickListener {
@@ -183,6 +210,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.restrainedImageView.setImageResource(R.mipmap.ic_restrained_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.stunnedImageView.setOnClickListener {
@@ -193,6 +221,7 @@ private val characterDAO: CharacterDAO
             } else {
                 holder.binding.stunnedImageView.setImageResource(R.mipmap.ic_stunned_false)
             }
+            characterDAO.update(character)
         }
 
         holder.binding.unconsciousImageView.setOnClickListener {
@@ -206,6 +235,7 @@ private val characterDAO: CharacterDAO
                 holder.binding.unconsciousImageView.setImageResource(R.mipmap.ic_unconscious_false)
                 Log.d("Boolean Unconscious", "${character.unconscious}")
             }
+            characterDAO.update(character)
         }
         /*  holder.itemView.setOnLongClickListener{
 
@@ -220,7 +250,76 @@ private val characterDAO: CharacterDAO
         this.dataSet = dataSet
         notifyDataSetChanged()
     }
+    fun setCharacterImages(holder: CharacterViewHolder, character: Character) {
+        // Define un diccionario de atributos y sus respectivas imágenes
+        val attributeImageMap = mapOf(
+            "blinded" to Pair(R.mipmap.ic_blinded, R.mipmap.ic_blinded_false),
+            "charmed" to Pair(R.mipmap.ic_charmed, R.mipmap.ic_charmed_false),
+            "deafened" to Pair(R.mipmap.ic_deafened, R.mipmap.ic_deafened_false),
+            "exhausted" to Pair(R.mipmap.ic_exhausted, R.mipmap.ic_exhausted_false),
+            "frightened" to Pair(R.mipmap.ic_frightened, R.mipmap.ic_frightened_false),
+            "grappled" to Pair(R.mipmap.ic_grappled, R.mipmap.ic_grappled_false),
+            "incapacitated" to Pair(R.mipmap.ic_incapacitated, R.mipmap.ic_incapacitated_false),
+            "invisible" to Pair(R.mipmap.ic_invisible, R.mipmap.ic_invisible_false),
+            "paralyzed" to Pair(R.mipmap.ic_paralyzed, R.mipmap.ic_paralyzed_false),
+            "petrified" to Pair(R.mipmap.ic_petrified, R.mipmap.ic_petrified_false),
+            "poisoned" to Pair(R.mipmap.ic_poisoned, R.mipmap.ic_poisoned_false),
+            "prone" to Pair(R.mipmap.ic_prone, R.mipmap.ic_prone_false),
+            "restrained" to Pair(R.mipmap.ic_restrained, R.mipmap.ic_restrained_false),
+            "stunned" to Pair(R.mipmap.ic_stunned, R.mipmap.ic_stunned_false),
+            "unconscious" to Pair(R.mipmap.ic_unconscious, R.mipmap.ic_unconscious_false)
 
+            // Añade más atributos e imágenes según sea necesario
+        )
+
+        // Itera sobre el diccionario y aplica la lógica de if-else a cada atributo
+        for ((attributeName, images) in attributeImageMap) {
+            val imageView = when (attributeName) {
+                "blinded" -> holder.binding.blindedImageView
+                "charmed" -> holder.binding.charmedImageView
+                "deafened" -> holder.binding.deafenedImageView
+                "exhausted" -> holder.binding.exhaustedImageView
+                "frightened" -> holder.binding.frightenedImageView
+                "grappled" -> holder.binding.grappledImageView
+                "incapacitated" -> holder.binding.incapacitatedImageView
+                "invisible"-> holder.binding.invisibleImageView
+                "paralyzed" -> holder.binding.paralyzedImageView
+                "petrified" -> holder.binding.petrifiedImageView
+                "poisoned"-> holder.binding.poisonedImageView
+                "prone" -> holder.binding.proneImageView
+                "restrained"-> holder.binding.restrainedImageView
+                "stunned"-> holder.binding.stunnedImageView
+                "unconscious"-> holder.binding.unconsciousImageView
+                // Añade más ImageView según sea necesario
+                else -> null
+            }
+
+            imageView?.let {
+                val isAttributeTrue = when (attributeName) {
+                    "blinded" -> character.blinded
+                    "charmed" -> character.charmed
+                    "deafened" -> character.deafened
+                    "exhausted" -> character.exhausted
+                    "frightened" -> character.frightened
+                    "grappled" -> character.grappled
+                    "incapacitated" -> character.incapacitated
+                    "invisible"-> character.invisible
+                    "paralyzed" -> character.paralyzed
+                    "petrified" -> character.petrified
+                    "poisoned"-> character.poisoned
+                    "prone" -> character.prone
+                    "restrained"-> character.restrained
+                    "stunned"-> character.stunned
+                    "unconscious"-> character.unconscious
+                    // Añade más condiciones según los atributos
+                    else -> false
+                }
+
+                val imageResource = if (isAttributeTrue) images.first else images.second
+                it.setImageResource(imageResource)
+            }
+        }
+    }
 
     class CharacterViewHolder(val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root) {
 

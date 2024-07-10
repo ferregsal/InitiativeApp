@@ -3,14 +3,20 @@ package com.example.initiativeapp.Activities
 
 
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.BaseColumns
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,18 +37,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var characterAdapter: CharacterAdapter
     lateinit var characterList: List<Character>
     lateinit var characterDAO: CharacterDAO
+
     var searchText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
+      /*  supportActionBar?.apply {
+            characterAddButton = characterAddButton
+        }*/
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         characterRecyclerView = binding.recyclerView
-
-        addCategoryButton = binding.characterAddButton
 
 
         characterDAO = CharacterDAO(this)
@@ -56,12 +63,7 @@ class MainActivity : AppCompatActivity() {
         // Toast.makeText(this, "Click on Character ${characterList[position].name}", Toast.LENGTH_SHORT).show()
 
 
-        }, { position, newCharacterName ->
-            val character = characterList[position]
-            character.name = newCharacterName
-            characterDAO.update(character)
-            loadData()
-        }, {
+        },{
             characterDAO.delete(characterList[it])
             Toast.makeText(this, "Character Deleted Successfully", Toast.LENGTH_SHORT).show()
             loadData()
@@ -99,10 +101,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = characterAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        binding.characterAddButton.setOnClickListener {
-            val intent = Intent(this, CreateEditActivity::class.java)
-            startActivity(intent)
-        }
+
 
     }
 
@@ -128,8 +127,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_main_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.characterAddButton -> {
+                val intent = Intent(this, CreateEditActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 
         return true
+    }
+    fun showAlertDialogWithDescription() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Attributes")
+
+        val customLayout: View = layoutInflater.inflate(R.layout.custom_view_layout, null)
+        builder.setView(customLayout)
+
+        builder.setPositiveButton("OK") { dialog: DialogInterface?, which: Int ->
+            // Opcional: Realizar acciones adicionales cuando se pulse "OK"
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 }

@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/conditionDetailsButton"
-        android:icon="@drawable/conditions_icon"
+        android:id="@+id/characterAddButton"
+        android:icon="@drawable/add_icon_circle"
         android:iconTint="@color/white"
-        android:title="Condition Details"
+        android:title= "New Character"
+        app:showAsAction="always"
+        />
 
-        app:showAsAction="always"/>
 
 </menu>

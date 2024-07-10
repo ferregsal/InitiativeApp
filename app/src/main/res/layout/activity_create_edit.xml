@@ -2,11 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="25dp"
+        android:elevation="5dp"
+        app:cardBackgroundColor="@color/grey"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:layout_margin="25dp"
+        >
+
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Name:"
+    android:text="@string/nameField"
     android:textStyle="bold"
     android:textSize="24dp"
     />
@@ -19,7 +40,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Initiative:"
+        android:text="@string/initiativeField"
         android:textStyle="bold"
         android:textSize="24dp"
         />
@@ -27,13 +48,13 @@
         android:id="@+id/initiativeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="0"
         android:inputType="number"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HP:"
+        android:text="@string/hpField"
         android:textStyle="bold"
         android:textSize="24dp"
         />
@@ -41,15 +62,22 @@
         android:id="@+id/hpEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="0"
         android:inputType="number"
         />
 
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+    </FrameLayout>
     <Button
             android:id="@+id/newCharacterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guardar"/>
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:text="@string/saveText"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp"
+        />
 
 
 

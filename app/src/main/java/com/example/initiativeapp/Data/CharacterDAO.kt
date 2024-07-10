@@ -27,7 +27,7 @@ class CharacterDAO(context: Context) {
         values.put(Character.COLUMN_NAME_NAME, character.name)
         values.put(Character.COLUMN_NAME_INITIATIVE, character.initiative)
         values.put(Character.COLUMN_NAME_HP, character.hp)
-        values.put(Character.COLUMN_NAME_BLINDED, character.name)
+        values.put(Character.COLUMN_NAME_BLINDED, character.blinded)
         values.put(Character.COLUMN_NAME_CHARMED, character.charmed)
         values.put(Character.COLUMN_NAME_DEAFENED, character.deafened)
         values.put(Character.COLUMN_NAME_FRIGHTENED, character.frightened)
