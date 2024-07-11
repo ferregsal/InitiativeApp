@@ -1,15 +1,13 @@
 package com.example.initiativeapp.Adapters
 
-import android.content.DialogInterface
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.horoscopeapp.utils.SessionManager
 import com.example.initiativeapp.Data.Character
 import com.example.initiativeapp.Data.CharacterDAO
 import com.example.initiativeapp.Data.Conditions
@@ -51,10 +49,12 @@ private val characterDAO: CharacterDAO,
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+        val sessionManager = SessionManager(holder.itemView.context)
         val characterList: List<Character> = characterDAO.findAll()
         val character = characterList[position]
+        val storedInitiative = sessionManager.getInitiative(character.id)
 
-        holder.render(dataSet[position])
+        holder.render(character, storedInitiative)
         holder.binding.deleteImageButton.setOnClickListener { onItemDeleteClickListener(position) }
         holder.binding.editImageButton.setOnClickListener { onItemEditClickListener(position) }
         holder.binding.addHpButton.setOnClickListener { onItemAddHpClickListener(position) }
@@ -83,11 +83,6 @@ private val characterDAO: CharacterDAO,
             }
             characterDAO.update(character)
         }
-        /*holder.binding.charmedImageView.setOnLongClickListener {
-            showAlertDialogWithDescription(Conditions.blinded){
-
-            }
-        }*/
 
 
 
@@ -259,10 +254,10 @@ private val characterDAO: CharacterDAO,
             setConditionLongClickListener(imageView, condition, position)
         }
     }
-
     override fun getItemCount(): Int = dataSet.size
+
     fun updateData(dataSet: List<Character>) {
-        this.dataSet = dataSet
+        this.dataSet = dataSet.toMutableList()
         notifyDataSetChanged()
     }
     fun setCharacterImages(holder: CharacterViewHolder, character: Character) {
@@ -369,10 +364,12 @@ private val characterDAO: CharacterDAO,
 
     class CharacterViewHolder(val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun render(character: Character) {
+        fun render(character: Character, storedInitiative:Int) {
             binding.nameTextView.text = character.name
             binding.initTextview.text = character.initiative.toString()
             binding.hpTextview.text = character.hp.toString()
+            // Mostrar la iniciativa almacenada en la sesión
+            binding.finalInitTextview.text = storedInitiative.toString()
         }
     }
 
