@@ -3,11 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/characterAddButton2"
+        app:iconTint="@color/white"
+        android:title= "@string/new_character"
+        app:showAsAction="always|withText"
+        />
+
+    <item
         android:id="@+id/characterAddButton"
         android:icon="@drawable/add_icon_circle"
-        android:iconTint="@color/white"
-        android:title= "New Character"
-        app:showAsAction="always"
+        app:iconTint="@color/white"
+        android:title= "@string/new_character"
+        app:showAsAction="always|withText"
         />
 
 

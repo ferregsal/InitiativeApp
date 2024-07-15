@@ -100,7 +100,8 @@
 
     <string name="unconscious_title_esp">Inconsciente</string>
     <string name="unconscious_description_esp">Una criatura inconsciente está incapacitada (ver la condición), no puede moverse ni hablar, y no es consciente de su entorno. La criatura suelta lo que esté sosteniendo y cae derribada. La criatura falla automáticamente las tiradas de salvación de Fuerza y Destreza. Las tiradas de ataque contra la criatura tienen ventaja. Cualquier ataque que golpee a la criatura es un golpe crítico si el atacante está a menos de 1,5 metros de la criatura.</string>
-
+    <string name="new_character">New Character</string>
+    <string name="new_character_arrow"><![CDATA[New Character ->]]></string>
 
 
 </resources>

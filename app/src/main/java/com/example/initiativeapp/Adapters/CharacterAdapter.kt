@@ -50,8 +50,8 @@ private val characterDAO: CharacterDAO,
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val sessionManager = SessionManager(holder.itemView.context)
-        val characterList: List<Character> = characterDAO.findAll()
-        val character = characterList[position]
+        //val characterList: List<Character> = characterDAO.findAll()
+        val character = dataSet[position]
         val storedInitiative = sessionManager.getInitiative(character.id)
 
         holder.render(character, storedInitiative)

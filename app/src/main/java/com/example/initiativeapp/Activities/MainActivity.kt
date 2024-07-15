@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "${character.name}'s roll: ${roll}", Toast.LENGTH_SHORT).show()
             }
 
+            characterList = characterList.sortedBy {
+                session.getInitiative(it.id)
+            }.reversed()
+
             // Actualizar datos en el adaptador (opcional si `sortByInitiative` ya notifica cambios)
             characterAdapter.updateData(characterList)
         }
@@ -61,39 +65,33 @@ class MainActivity : AppCompatActivity() {
         characterList = characterDAO.findAll()
 
 
-        characterAdapter = CharacterAdapter(emptyList(), {
-            characterDAO.delete(characterList[it])
+        characterAdapter = CharacterAdapter(emptyList(),
+            // Lambda para eliminar un personaje
+            { characterDAO.delete(characterList[it])
             Toast.makeText(this, "Character Deleted Successfully", Toast.LENGTH_SHORT).show()
             loadData()
-        },{position ->
+            },
+            // Lambda para editar un personaje
+            {position ->
             navigateToDetail(characterList[position])
             characterDAO.update(characterList[position])
-        },{position->
-          val character = characterList[position]
+            },
+            // Lambda para aumentar puntos de vida (hp)
+            {position->
+             val character = characterList[position]
             character.hp = character.hp?.plus(1)
             characterDAO.update(character)
             loadData()
-        }, {position->
+            },
+            // Lambda para disminuir puntos de vida (hp)
+            {position->
             val character = characterList[position]
             character.hp = character.hp?.minus(1)
             characterDAO.update(character)
             loadData()
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },{
-        },characterDAO = characterDAO)
+            },
+            // Resto de las lambdas (se mantienen vacías)
+            {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},characterDAO = characterDAO)
         binding.recyclerView.adapter = characterAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -103,12 +101,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        characterList = characterDAO.findAll()
-
-        characterAdapter.updateData(characterList)
+        loadData()
     }
     private fun loadData() {
         characterList = characterDAO.findAll()
+
+        characterList.sortedBy {
+            session.getInitiative(it.id)
+        }.reversed()
 
         characterAdapter.updateData(characterList)
     }
@@ -127,6 +127,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.characterAddButton2,
             R.id.characterAddButton -> {
                 val intent = Intent(this, CreateEditActivity::class.java)
                 startActivity(intent)
