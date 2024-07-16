@@ -83,13 +83,13 @@ class CharacterDAO(context: Context) {
         )
 
         val cursor = db.query(
-            Character.TABLE_NAME,                        // The table to query
-            projection,                             // The array of columns to return (pass null to get all)
-            "${BaseColumns._ID} = $id",      // The columns for the WHERE clause
-            null,                         // The values for the WHERE clause
-            null,                            // don't group the rows
-            null,                             // don't filter by row groups
-            null                       // The sort order
+            Character.TABLE_NAME,
+            projection,
+            "${BaseColumns._ID} = $id",
+            null,
+            null,
+            null,
+            null
         )
 
         var character: Character? = null
