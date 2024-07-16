@@ -1,5 +1,6 @@
 # InitiativeApp
 Autor: Fernando Regidor Salazar 
+
 An initiative, HP, and condition tracker for D&amp;D 5e
 
 Requisitos de la app:
