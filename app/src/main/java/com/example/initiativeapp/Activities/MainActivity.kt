@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadData() {
         characterList = characterDAO.findAll()
 
-        characterList.sortedBy {
+        characterList = characterList.sortedBy {
             session.getInitiative(it.id)
         }.reversed()
 
