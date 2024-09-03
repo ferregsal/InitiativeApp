@@ -53,12 +53,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "${character.name}'s roll: ${roll}", Toast.LENGTH_SHORT).show()
             }
 
-            characterList = characterList.sortedBy {
-                session.getInitiative(it.id)
-            }.reversed()
+            sortData()
 
-            // Actualizar datos en el adaptador (opcional si `sortByInitiative` ya notifica cambios)
-            characterAdapter.updateData(characterList)
         }
 
         characterDAO = CharacterDAO(this)
@@ -105,7 +101,9 @@ class MainActivity : AppCompatActivity() {
     }
     private fun loadData() {
         characterList = characterDAO.findAll()
-
+        sortData()
+    }
+    private fun sortData(){
         characterList = characterList.sortedBy {
             session.getInitiative(it.id)
         }.reversed()
